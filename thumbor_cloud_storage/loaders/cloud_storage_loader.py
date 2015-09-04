@@ -1,6 +1,7 @@
 from tornado.concurrent import return_future
 from gcloud import storage
 
+@return_future
 def load(context, path, callback):
     bucket_id  = context.config.get("CLOUD_STORAGE_BUCKET_ID")
     project_id = context.config.get("CLOUD_STORAGE_PROJECT_ID")
