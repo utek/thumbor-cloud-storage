@@ -7,7 +7,10 @@ def load(context, path, callback):
     project_id = context.config.get("CLOUD_STORAGE_PROJECT_ID")
     client = storage.Client(project_id)
     bucket = client.get_bucket(bucket_id)
-    blob = bucket.get_blob(path)
+    try:
+        blob = bucket.get_blob(path)
+    except:
+        blob = None
 
     if blob is None:
       return callback(None)
