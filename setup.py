@@ -2,8 +2,9 @@ from setuptools import setup
 from setuptools import find_packages
 
 REQUIREMENTS = [
-  "thumbor",
-  "gcloud",
+  "thumbor==5.0.3",
+  "gcloud==0.7.1",
+  "protorpc==0.10.0",
 ]
 
 setup(
