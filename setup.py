@@ -9,10 +9,10 @@ REQUIREMENTS = [
 
 setup(
   name="thumbor_cloud_storage",
-  version="1.0.0",
+  version="2.0.0",
   author="Pedro Gimenez",
   author_email="me@pedro.bz",
-  description="Thumbor's Google Cloud Storage loader",
+  description="Thumbor's Google Cloud Storage loader and result storage",
   url="https://github.com/pedrogimenez/thumbor-cloud-storage",
   license="MIT",
   include_package_data=True,
