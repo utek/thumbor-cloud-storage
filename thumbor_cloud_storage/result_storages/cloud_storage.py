@@ -41,10 +41,13 @@ class Storage(BaseStorage):
 
     def put(self, bytes):
         file_abspath = self.normalize_path(self.context.request.url)
-        logger.debug("[RESULT_STORAGE] putting at %s" % (file_abspath,))
+        logger.debug("[RESULT_STORAGE] putting at %s" % file_abspath)
         bucket = self.get_bucket()
         blob = bucket.blob(file_abspath)
         blob.upload_from_string(bytes)
+        max_age = self.context.config.MAX_AGE
+        blob.cache_control = "public,max-age=%s" % max_age
+        blob.patch()
 
     def get(self):
         path = self.context.request.url
