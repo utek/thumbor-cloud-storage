@@ -14,12 +14,5 @@ def load(context, path, callback):
         bucket = client.get_bucket(bucket_id)
         buckets[project_id][bucket_id] = bucket
 
-    try:
-        blob = bucket.get_blob(path)
-    except:
-        blob = None
-
-    if blob is None:
-      return callback(None)
-
+    blob = bucket.get_blob(path)
     callback(blob.download_as_string())
