@@ -13,6 +13,7 @@ from gcloud import storage
 
 from thumbor.result_storages import BaseStorage
 from thumbor.utils import logger
+from thumbor.engines import BaseEngine
 
 
 class Storage(BaseStorage):
@@ -43,10 +44,16 @@ class Storage(BaseStorage):
         file_abspath = self.normalize_path(self.context.request.url)
         logger.debug("[RESULT_STORAGE] putting at %s" % file_abspath)
         bucket = self.get_bucket()
+
         blob = bucket.blob(file_abspath)
         blob.upload_from_string(bytes)
+
         max_age = self.context.config.MAX_AGE
         blob.cache_control = "public,max-age=%s" % max_age
+
+        mime = BaseEngine.get_mimetype(bytes)
+        blob.content_type = mime
+
         blob.patch()
 
     def get(self):
