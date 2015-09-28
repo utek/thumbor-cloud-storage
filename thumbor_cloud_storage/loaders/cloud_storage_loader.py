@@ -15,4 +15,7 @@ def load(context, path, callback):
         buckets[project_id][bucket_id] = bucket
 
     blob = bucket.get_blob(path)
-    callback(blob.download_as_string())
+    if blob:
+        callback(blob.download_as_string())
+    else:
+        callback(blob)
