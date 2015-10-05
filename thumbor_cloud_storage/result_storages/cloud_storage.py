@@ -51,8 +51,13 @@ class Storage(BaseStorage):
         max_age = self.context.config.MAX_AGE
         blob.cache_control = "public,max-age=%s" % max_age
 
-        mime = BaseEngine.get_mimetype(bytes)
-        blob.content_type = mime
+        if bytes:
+            try:
+                mime = BaseEngine.get_mimetype(bytes)
+                blob.content_type = mime
+            except:
+                logger.debug("[RESULT_STORAGE] Couldn't determine mimetype")
+
 
         blob.patch()
 
