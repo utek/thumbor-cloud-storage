@@ -11,6 +11,7 @@ from datetime import datetime
 
 from os.path import join
 from gcloud import storage
+from oauth2client.service_account import ServiceAccountCredentials
 
 from thumbor.result_storages import BaseStorage
 from thumbor.utils import logger
@@ -33,7 +34,9 @@ class Storage(BaseStorage):
         if not parent.bucket:
             bucket_id  = self.context.config.get("RESULT_STORAGE_CLOUD_STORAGE_BUCKET_ID")
             project_id = self.context.config.get("RESULT_STORAGE_CLOUD_STORAGE_PROJECT_ID")
-            client = storage.Client(project_id)
+            auth_json = self.context.config.get("RESULT_STORAGE_CLOUD_STORAGE_AUTH_JSON")
+            credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json)
+            client = storage.Client(project_id, credentials)
             parent.bucket = client.get_bucket(bucket_id)
         return parent.bucket
 
