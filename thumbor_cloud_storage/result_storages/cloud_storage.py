@@ -6,6 +6,7 @@
 # Licensed under the MIT license:
 # http://www.opensource.org/licenses/mit-license
 
+import pytz
 from datetime import datetime
 
 from os.path import join
@@ -92,7 +93,7 @@ class Storage(BaseStorage):
         if expire_in_seconds is None or expire_in_seconds == 0:
             return False
 
-        timediff = datetime.now() - blob.updated 
+        timediff = datetime.now(pytz.utc) - blob.updated
         return timediff.seconds > expire_in_seconds
 
     def last_updated(self):
