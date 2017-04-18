@@ -35,8 +35,11 @@ class Storage(BaseStorage):
             bucket_id  = self.context.config.get("RESULT_STORAGE_CLOUD_STORAGE_BUCKET_ID")
             project_id = self.context.config.get("RESULT_STORAGE_CLOUD_STORAGE_PROJECT_ID")
             auth_json = self.context.config.get("RESULT_STORAGE_CLOUD_STORAGE_AUTH_JSON")
-            credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json)
-            client = storage.Client(project_id, credentials)
+            if auth_json:
+                credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json)
+                client = storage.Client(project_id, credentials)
+            else:
+                client = storage.Client(project_id)
             parent.bucket = client.get_bucket(bucket_id)
         return parent.bucket
 

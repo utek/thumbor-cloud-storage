@@ -12,8 +12,11 @@ def load(context, path, callback):
     auth_json = context.config.get("CLOUD_STORAGE_AUTH_JSON")
     bucket = buckets[project_id].get(bucket_id, None)
     if bucket is None:
-        credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json)
-        client = storage.Client(project_id,credentials)
+        if auth_json:
+            credentials = ServiceAccountCredentials.from_json_keyfile_name(auth_json)
+            client = storage.Client(project_id, credentials)
+        else:
+            client = storage.Client(project_id)
         bucket = client.get_bucket(bucket_id)
         buckets[project_id][bucket_id] = bucket
 
