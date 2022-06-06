@@ -4,9 +4,10 @@ from collections import defaultdict
 
 buckets = defaultdict(dict)
 
+
 @return_future
 def load(context, path, callback):
-    bucket_id  = context.config.get("CLOUD_STORAGE_BUCKET_ID")
+    bucket_id = context.config.get("CLOUD_STORAGE_BUCKET_ID")
     project_id = context.config.get("CLOUD_STORAGE_PROJECT_ID")
     bucket = buckets[project_id].get(bucket_id, None)
     if bucket is None:
