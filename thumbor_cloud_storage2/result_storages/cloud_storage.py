@@ -1,20 +1,11 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-# https://github.com/superbalist/thumbor-cloud-storage
-
-# Licensed under the MIT license:
-# http://www.opensource.org/licenses/mit-license
+from datetime import datetime
+from os.path import join
 
 import pytz
-from datetime import datetime
-
-from os.path import join
-from gcloud import storage
-
+from google.cloud import storage
+from thumbor.engines import BaseEngine
 from thumbor.result_storages import BaseStorage
 from thumbor.utils import logger
-from thumbor.engines import BaseEngine
 
 
 class Storage(BaseStorage):
@@ -60,7 +51,7 @@ class Storage(BaseStorage):
             try:
                 mime = BaseEngine.get_mimetype(bytes)
                 blob.content_type = mime
-            except:
+            except Exception:
                 logger.debug("[RESULT_STORAGE] Couldn't determine mimetype")
 
         blob.patch()

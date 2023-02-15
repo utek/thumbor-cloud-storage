@@ -1,12 +1,15 @@
-Thumbor Cloud Storage
-=====================
+Thumbor Cloud Storage 2
+=======================
+
+This is a for of Thumbor Cloud Storage to make it work with new version of Thumbor.
+As the original Thumbor Coud Storage seems like it's no longer maintained.
 
 Installation
 ------------
 
 .. code:: bash
 
-        pip install thumbor-cloud-storage
+        pip install thumbor-cloud-storage2
 
 Authentication
 ~~~~~~~~~~~~~~
@@ -33,7 +36,7 @@ Configuration
 Loader settings
 ~~~~~~~~~~~~~~~
 
-When using ``thumbor_cloud_storage.loaders.cloud_storage_loader``:
+When using ``thumbor_cloud_storage2.loaders.cloud_storage_loader``:
 
 .. code:: python
 
@@ -44,7 +47,7 @@ When using ``thumbor_cloud_storage.loaders.cloud_storage_loader``:
 Result storage settings
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-When ``thumbor_cloud_storage.result_storages.cloud_storage`` is enabled:
+When ``thumbor_cloud_storage2.result_storages.cloud_storage`` is enabled:
 
 .. code:: python
 

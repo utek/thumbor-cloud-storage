@@ -2,14 +2,13 @@ import codecs
 import os
 import re
 
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 ###############################################################################
 
-NAME = "thumbor-cloud-storage"
+NAME = "thumbor-cloud-storage2"
 PACKAGES = find_packages()
-META_PATH = os.path.join("thumbor_cloud_storage", "__init__.py")
+META_PATH = os.path.join("thumbor_cloud_storage2", "__init__.py")
 KEYWORDS = [
     "thumbor",
     "google cloud platform",
@@ -25,8 +24,6 @@ CLASSIFIERS = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 2",
-    "Programming Language :: Python :: 2.7",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.4",
     "Programming Language :: Python :: 3.5",
